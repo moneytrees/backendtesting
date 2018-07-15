@@ -19,15 +19,15 @@ const testSchema = new Schema({
 // create a new collection called name 
 // const Name = mongoose.model("Institution", testSchema);
 
-describe("inst", function() {
-    it("should be invalid if any properties in test schema are left empty", function(done) {
-        var inst = new Inst();
-        inst.validate(function(err) {
-            expect(err.errors.testSchema).to.exist;
-            done();
-        });
-    });
-});
+// describe("inst", function() {
+//     it("should be invalid if any properties in test schema are left empty", function(done) {
+//         var inst = new Inst();
+//         inst.validate(function(err) {
+//             expect(err.errors.testSchema).to.exist;
+//             done();
+//         });
+//     });
+// });
 
 // describe("Database Tests", function () {
 //     // before starting test, created a sandbox database connection
