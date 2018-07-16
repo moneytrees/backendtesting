@@ -4,12 +4,15 @@ process.env.NODE_ENV = "test";
 
 const mocha = require("mocha");
 const mongoose = require("mongoose");
-// const Schema = mongoose.Schema;
-const chai = require("chai");
-let server = require("../../server");
-const expect = chai.expect; 
-const faker = require('faker');
+const Schema = mongoose.Schema;
+// const chai = require("chai");
+let app = require("../../server.js");
+// let server = require("./bin/www.ec2-18-232-212-14.compute-1.amazonaws.com")
+// const expect = chai.expect(); 
 
+const chai = require('chai');
+const chaiHttp = require('chai-http');
+chai.use(chaiHttp);
 
 // path to controller and to database
 // let Institution = require("../../db/models/inst.js");
@@ -43,20 +46,16 @@ describe("Create account, Login, and check token", () => {
 
 describe("/POST Register", ()=> {
     it("it should Register, Login, and check token", (done) => {
-        request(server)
-        .post("/api/register")
-        .set('Accept', 'application/json')
-                    .send(fakeuser)
-        // .send(register_details)
+        chai.request(chaiHttp)
+        .post("./api/register")
+        .send(register_details)
         .end((err, res) => {
             res.should.have.status(201);
-            res.body.should.be.an('object');
-            done();
-
+            expect(res.body.state).to.be("object")
+        })
     });
 });
 
-});
 // PRIORITY test if the bank name and access token above are saved to db
 // describe("Database Tests", function () {
 //     // before starting test, created a sandbox database connection
@@ -121,4 +120,3 @@ describe("/POST Register", ()=> {
 //             done();
 //         });
 //     });
-
