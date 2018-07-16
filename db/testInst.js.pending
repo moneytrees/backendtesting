@@ -1,32 +1,74 @@
 // testing inst db if it has id, name, access_token, item_id
 process.env.NODE_ENV = "test";
+
 const mocha = require("mocha");
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const chai = require("chai");
-const expect = chai.expect; 
+// const chai = require("chai");
+let app = require("../../server.js");
+// let server = require("./bin/www.ec2-18-232-212-14.compute-1.amazonaws.com")
+// const expect = chai.expect(); 
+
+const chai = require('chai');
+const chaiHttp = require('chai-http');
+chai.use(chaiHttp);
 
 // path to controller and to database
-const Institution = require("../../db/models/inst.js");
+// let Institution = require("../../db/models/inst.js");
 const PlaidControl = require("../../api/controllers/plaidController.js");
 
+// login
+let login_details = {
+        name: "",
+        email: "",
+        password: "",
+        referrerRedirect: false
+};
+
+let register_details = {
+        email: "",
+        name: "",
+        password: "",
+        referrerRedirect: false,
+        feedback: false
+   
+};
 
 // PRIORITY test if access_token and bank institution name are returned by API Plaid
+describe("Create account, Login, and check token", () => {
+   // reset user mode before each test 
+    beforeEach((done) => {
+        console.log(err);
+        done();
+    });
+});
+
+describe("/POST Register", ()=> {
+    it("it should Register, Login, and check token", (done) => {
+        chai.request(chaiHttp)
+        .post("./api/register")
+        .send(register_details)
+        .end((err, res) => {
+            res.should.have.status(201);
+            expect(res.body.state).to.be("object")
+        })
+    });
+});
 
 // PRIORITY test if the bank name and access token above are saved to db
-describe("Database Tests", function () {
-    // before starting test, created a sandbox database connection
-    before(function (done) {
-        mongoose.connect("mongodb://localhost/willsdevdbformoneytrees");
-        const db = mongoose.connection;
-        db.on("error", console.error.bind(console, "connection error"));
-        // once a connection invoke done ()
-            db.once("open", function () {
-                console.log("we are connected to test db")
-                done();
-            });
-        });
-    });
+// describe("Database Tests", function () {
+//     // before starting test, created a sandbox database connection
+//     before(function (done) {
+//         mongoose.connect("mongodb://localhost/willsdevdbformoneytrees");
+//         const db = mongoose.connection;
+//         db.on("error", console.error.bind(console, "connection error"));
+//         // once a connection invoke done ()
+//             db.once("open", function () {
+//                 console.log("we are connected to test db")
+//                 done();
+//             });
+//         });
+//     });
 
     // create a new schema that accepts id, name, access token, and item id
 // const instTestSchema = new Schema({
@@ -77,4 +119,3 @@ describe("Database Tests", function () {
 //             done();
 //         });
 //     });
-
