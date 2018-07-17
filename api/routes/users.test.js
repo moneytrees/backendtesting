@@ -20,7 +20,7 @@ app.listen(7000, function () {
          password2: pass
      };
      
-     console.log(fakeuser);
+    //  console.log(fakeuser);
 
     describe('POST /api/register', function() {
 
@@ -41,38 +41,39 @@ app.listen(7000, function () {
                         should.not.exist(res.body.institutions);
                         should.not.exist(res.body.password);
                         should.not.exist(res.body.error);
-                        // console.log("login response: ", res );
+                        console.log("login response: ", res );
                         should.exist(res.body.id);
                         should.exist(res.body.success);
-    //                     expect(res.success).toContain(fakeuser.name);
-    //                     res.body.should.be.an('object');
+                        expect(res.body.success).toContain(fakeuser.name);
+                        // res.should.be.an('object');
+
                         done();
                     });
             });
         });
 
-//         describe('Registering an existing user email', function() {
+        describe('Registering an existing user email', function() {
 
-//             it('should return error response for the already registered email account.', function(done) {
+            it('should return error response for the already registered email account.', function(done) {
 
-//                 request(app)
-//                     .post('/api/register')
-//                     .set('Accept', 'application/json')
-//                     .send(fakeuser)
-//                     .expect('Content-Type', /json/)
-//                     .expect(400)
-//                     .end(function(err, res) {
-//                         should.exist(res.error);
-//                         should.exist(res.error.email);
-//                         should.not.exist(res.id);
-//                         should.not.exist(res.success);
-//                         expect(res.error.email).toContain('Email already exists');
+                request(app)
+                    .post('/api/register')
+                    .set('Accept', 'application/json')
+                    .send(fakeuser)
+                    .expect('Content-Type', /json/)
+                    .expect(400)
+                    .end(function(err, res) {
+                        should.exist(res.error);
+                        // should.exist(res.error.email);
+                        should.not.exist(res.body.id);
+                        should.not.exist(res.body.success);
+                        // expect(res.error.email).toContain('Email already exists');
 //                         res.body.should.be.an('object');
-//                         done();
-//                     });
+                        done();
+                    });
 //             });
-//         });
-//     });
+        });
+    });
 
 //      describe('POST /api/login', function() {
 
