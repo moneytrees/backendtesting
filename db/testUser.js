@@ -25,7 +25,7 @@ describe('Database Tests', function () {
     //Before starting the test, create a sandboxed database connection
     //Once a connection is established invoke done()
     test("Application attempts to connect to database", async (done) => {
-        mongoose.connect('mongodb://localhost/willsdevdbformoneytrees');
+        mongoose.connect(process.env.MONGODB);
         const db = mongoose.connection;
         db.on('error', console.error.bind(console, 'connection error'));
         db.once('open', function () {
