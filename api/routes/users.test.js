@@ -71,34 +71,34 @@ app.listen(7000, function () {
 //                         res.body.should.be.an('object');
                         done();
                     });
-//             });
+            });
         });
     });
 
-//      describe('POST /api/login', function() {
+     describe('POST /api/login', function() {
 
-//          describe('Logging in with an existing user email and valid password', function() {
+         describe('Logging in with an existing user email and valid password', function() {
 
-//              it('should return an id greater than zero and a success message welcoming the user back.', function(done) {
+             it('should return an id greater than zero and a success message welcoming the user back.', function(done) {
 
-//                  request(app)
-//                      .post('/api/login')
-//                      .set('Accept', 'application/json')
-//                      .send({ email: fakeuser.email, password: fakeuser.password })
-//                      .expect('Content-Type', /json/)
-//                      .expect(200)
-//                      .end(function(err, res) {
-//                          should.not.exist(res.token);
-//                          should.not.exist(res.error);
+                 request(app)
+                     .post('/api/login')
+                     .set('Accept', 'application/json')
+                     .send({ email: fakeuser.email, password: fakeuser.password })
+                     .expect('Content-Type', /json/)
+                     .expect(200)
+                     .end(function(err, res) {
+                         should.not.exist(res.token);
+                         should.not.exist(res.body.error);
 //                          should.exist(res.id);
 //                          should.exist(res.success);
 //                          expect(res.success).toContain(fakeuser.name);
 //                          expect(res.success).toContain('Welcome back');
 //                          res.body.should.be.an('object');
-//                          done();
-//                      });
-//              });
-//          });
+                         done();
+                     });
+             });
+         });
 
 //          describe('Logging in with an existing user email and an invalid password', function() {
 
