@@ -8,7 +8,7 @@ const chai = require("chai");
 const expect = chai.expect;
 
 // path to file 
-var User = require("../../db/models/user.js")
+var User = require("../../db/models/user.js");
 
 // create a new schema that accepts id, name, access token, and item id
 const testSchema = new Schema({
@@ -24,7 +24,7 @@ const Name = mongoose.model("Name", testSchema);
 describe('Database Tests', function () {
     //Before starting the test, create a sandboxed database connection
     //Once a connection is established invoke done()
-    before(function(done) {
+    test("Application attempts to connect to database", async (done) => {
         mongoose.connect('mongodb://localhost/willsdevdbformoneytrees');
         const db = mongoose.connection;
         db.on('error', console.error.bind(console, 'connection error'));

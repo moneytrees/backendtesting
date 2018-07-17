@@ -19,8 +19,8 @@ app.listen(7000, function () {
          password: pass,
          password2: pass
      };
-     
-    //  console.log(fakeuser);
+
+     fakeuser.email = fakeuser.email.replace('gmail','mail');
 
     describe('POST /api/register', function() {
 
@@ -28,6 +28,8 @@ app.listen(7000, function () {
 
             it('should return an id and success message for the newly registered email account.', function(done) {
 
+                console.log('Entered user information:');
+                console.log(fakeuser);
                 request(app)
                     .post('/api/register')
                     //set headers
@@ -41,7 +43,7 @@ app.listen(7000, function () {
                         should.not.exist(res.body.institutions);
                         should.not.exist(res.body.password);
                         should.not.exist(res.body.error);
-                        console.log("login response: ", res );
+                        console.log("login response: ", res.body );
                         should.exist(res.body.id);
                         should.exist(res.body.success);
                         expect(res.body.success).toContain(fakeuser.name);
