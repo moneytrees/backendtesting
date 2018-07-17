@@ -24,7 +24,7 @@ const Name = mongoose.model("Name", testSchema);
 describe('Database Tests', function () {
     //Before starting the test, create a sandboxed database connection
     //Once a connection is established invoke done()
-    before(function (done) {
+    before(function(done) {
         mongoose.connect('mongodb://localhost/willsdevdbformoneytrees');
         const db = mongoose.connection;
         db.on('error', console.error.bind(console, 'connection error'));
