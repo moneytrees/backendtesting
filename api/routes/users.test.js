@@ -90,9 +90,9 @@ app.listen(7000, function () {
                      .end(function(err, res) {
                          should.not.exist(res.token);
                          should.not.exist(res.body.error);
-//                          should.exist(res.id);
-//                          should.exist(res.success);
-//                          expect(res.success).toContain(fakeuser.name);
+                        //  should.exist(res.body.id);
+                        //  should.exist(res.body.success);
+                        //  expect(res.body.email).toContain(fakeuser.email);
 //                          expect(res.success).toContain('Welcome back');
 //                          res.body.should.be.an('object');
                          done();
